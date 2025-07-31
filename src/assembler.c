@@ -11,6 +11,8 @@
 #include "vm.h"
 #include "utility.h"
 
+#define MNEMONIC_LENGTH 15
+#define LABEL_LENGTH    15
 #define INT_STRING "0123456789"
 #define ADVANCE_LEXER(l) l.readPos++
 #define REWIND_LEXER(l)  l.readPos--
@@ -169,7 +171,48 @@ static opcode opcodeFromMnemonic(char *mnemonic)
 }
 
 
-void assemble(char *filename)
+void resolveMnemonic()
+{
+    char mnemonic[10] = {0};
+    int k;
+    opcode currOpcode;
+    
+    if(isalpha(c))
+    {
+        readMnemonic(mnemonic,c);
+        currOpcode = opcodeFromMnemonic(mnemonic);
+        if(currOpcode == NOP)
+        {
+            fprintf(stderr, "ASVM~line %d opcode not recognized",lex.lineNumber);
+            exit(1);
+        }
+    }
+
+    switch(currOpcode)
+    {
+        case PUSH:
+        case ALLOC:
+            c = getChar();
+            c = skipSpaces(c);
+
+            //opcodeIntoMemory(proc, k);
+            if(isdigit(c) || c == '-')
+            {
+                k = readInt(c);
+
+                //operandIntoMemory(proc , k)
+            }
+        default:
+            //opcodeIntoMemory();
+    }
+
+
+
+
+
+}
+
+void assemble(char *filename, vm *proc)
 {
     initLexer(filename);
     char c ;
@@ -183,7 +226,7 @@ void assemble(char *filename)
             case EOF:
                 return;
             default:
-                printf("%c\n", c);
+                resolveMnemonic(c);
                 break;
 
         }

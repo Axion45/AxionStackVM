@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "utility.h"
 #include "assembler.h"
+#include "vm.h"
 
 void printUsage(char *filename)
 {
@@ -16,10 +17,9 @@ int main(int argc , char *argv[])
         printUsage(argv[0]);
         return 1;
     }
-
-    assemble(argv[1]);
+    vm proc;
+    vmInit(&proc);
+    assemble(argv[1] , proc);
     
-
-
     return 0;
 }

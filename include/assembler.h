@@ -1,4 +1,4 @@
 #pragma once 
+#include "vm.h"
 
-
-void assemble();
+void assemble(char *,vm *);

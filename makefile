@@ -9,6 +9,7 @@ INCLUDES = -Iinclude -Iutility
 SRC = \
 	src/main.c \
 	src/assembler.c \
+	src/vm.c\
 	utility/utility.c
 #LIBSi
 LIBS = -lglfw -lGLEW -lGL -lm
