@@ -8,6 +8,7 @@ INCLUDES = -Iinclude -Iutility
 # Manually listed source files
 SRC = \
 	src/main.c \
+	src/assembler.c \
 	utility/utility.c
 #LIBSi
 LIBS = -lglfw -lGLEW -lGL -lm

@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "utility.h"
+#include "assembler.h"
 
 void printUsage(char *filename)
 {
@@ -16,10 +17,9 @@ int main(int argc , char *argv[])
         return 1;
     }
 
-    char *file = NULL;
+    assemble(argv[1]);
+    
 
-    utility_fileReader(argv[1] , &file);
-    printf("%s\n", file);
 
     return 0;
 }
